@@ -7,15 +7,20 @@ import {
   Text,
   SafeAreaView,
   Platform,
+  FlatList,
 } from 'react-native';
+import music_data from './music-data.json';
 
-function App(): React.JSX.Element { const isDarkMode = useColorScheme() === 'dark'; 
+function App(): React.JSX.Element { //const isDarkMode = useColorScheme() === 'dark'; 
 return (
     <SafeAreaView style={[styles.safeArea,{paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, },]}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar  />
 
       <View style={styles.contentContainer}>
-        <Text> just clean screen </Text>
+        <FlatList 
+        data={music_data}
+        renderItem={({item}) => <Text>{item.title}</Text>}
+        />
 
       </View>
     </SafeAreaView>
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    alignItems:'center',
+    backgroundColor: 'white',
   },
 });
 
